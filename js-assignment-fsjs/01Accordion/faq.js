@@ -18,19 +18,72 @@ const faqData = [
   },
 ];
 
-const accordianBody;
-const faqs = [];
+const accordianBody = document.querySelector(".accordian_body");
 
+// const faqs = [];
+
+// Creating elements of faq and adding eventListner to the button
+function createFaq(questionTxt, answerTxt) {
+  let mainDiv = document.createElement("div");
+  let headerDiv = document.createElement("div");
+  let question = document.createElement("h3");
+  let answer = document.createElement("p");
+  let btn = document.createElement("button");
+  mainDiv.setAttribute("class", "faq");
+  headerDiv.setAttribute("class", "faq_header");
+  answer.setAttribute("class", "hidden");
+  btn.setAttribute("class", "show_btn");
+  btn.textContent = "+";
+  accordianBody.append(mainDiv);
+  mainDiv.appendChild(headerDiv);
+  headerDiv.appendChild(question);
+  mainDiv.appendChild(answer);
+  headerDiv.appendChild(btn);
+
+  question.textContent = questionTxt;
+  answer.textContent = answerTxt;
+
+  // button click event
+  btn.addEventListener("click", btnStatusUpdate, true);
+  function btnStatusUpdate() {
+    btn.classList.add("transform");
+    btn.classList.toggle("rotate");
+    if (answer.classList.contains("hidden")) {
+      setTimeout(() => {
+        answer.classList.remove("hidden");
+      }, 300);
+      answer.classList.remove("opacityIn");
+      answer.classList.add("opacityOut");
+    } else {
+      answer.classList.remove("opacityOut");
+      answer.classList.add("opacityIn");
+      setTimeout(() => {
+        answer.classList.add("hidden");
+      }, 300);
+    }
+
+    // if (answer.classList.contains("hidden")) {
+    //   answer.classList.add("opacityIn");
+    // } else {
+    //   answer.classList.add("opacityOut");
+    // }
+  }
+}
+
+// Adding Faq to the page
 function showFaq() {
-  
+  for (let i = 0; i < faqData.length; i++) {
+    createFaq(faqData[i].question, faqData[i].answer);
+  }
 }
+showFaq();
 
-function createFaq() {
-  
+// Adding new faq's
+function addFaq(questionTxt, answerText) {
+  let faq = {
+    id: faqData.length + 1,
+    question: questionTxt,
+    answer: answerText,
+  };
+  faqData.push(faq);
 }
-
-function btnStatusUpdate() {
-  
-}
-
-

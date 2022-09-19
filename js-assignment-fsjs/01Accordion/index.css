@@ -10,16 +10,17 @@
 
 .faq {
   width: 100%;
-  background-color: #4caf50;
-  border-radius: 8px;
-  margin: 0em 0em 1.4em;
-  padding: 0.7em 1.4em;
+  position: relative;
 }
 
 .faq .faq_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #4caf50;
+  border-radius: 8px;
+  margin: 0em 0em 1.4em;
+  padding: 0.7em 1.4em;
 }
 
 .faq h3 {
@@ -33,8 +34,12 @@
 .faq p {
   font-size: 1em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  margin: 1em 0em 0em;
-  padding: 0em;
+  color: #000;
+  background-color: #eef2e6;
+  box-shadow: 5px 5px 8px rgba(85, 85, 85, 0.637);
+  border-radius: 8px;
+  margin: 0em 0em 1.4em;
+  padding: 0.7em 1.4em;
 }
 
 .faq .show_btn {
@@ -45,6 +50,8 @@
   box-shadow: none;
   border: none;
   color: white;
+  font-weight: 900;
+  font-size: 1.2rem;
   margin: 0em;
   border-radius: 120px;
   cursor: pointer;
@@ -52,4 +59,42 @@
 
 .hidden {
   display: none;
+}
+
+.opacityOut {
+  animation: opacityOut 0.3s linear;
+}
+
+.opacityIn {
+  animation: opacityIn 0.3s linear;
+}
+@keyframes opacityOut {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes opacityIn {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
+
+.transform {
+  transition: all 0.3s ease-in-out;
 }
