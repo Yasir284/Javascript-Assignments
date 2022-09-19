@@ -61,12 +61,6 @@ function createFaq(questionTxt, answerTxt) {
         answer.classList.add("hidden");
       }, 300);
     }
-
-    // if (answer.classList.contains("hidden")) {
-    //   answer.classList.add("opacityIn");
-    // } else {
-    //   answer.classList.add("opacityOut");
-    // }
   }
 }
 
