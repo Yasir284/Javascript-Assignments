@@ -20,8 +20,6 @@ const faqData = [
 
 const accordianBody = document.querySelector(".accordian_body");
 
-// const faqs = [];
-
 // Creating elements of faq and adding eventListner to the button
 function createFaq(questionTxt, answerTxt) {
   let mainDiv = document.createElement("div");
@@ -34,7 +32,7 @@ function createFaq(questionTxt, answerTxt) {
   answer.setAttribute("class", "hidden");
   btn.setAttribute("class", "show_btn");
   btn.textContent = "+";
-  accordianBody.append(mainDiv);
+  accordianBody.appendChild(mainDiv);
   mainDiv.appendChild(headerDiv);
   headerDiv.appendChild(question);
   mainDiv.appendChild(answer);
@@ -44,24 +42,32 @@ function createFaq(questionTxt, answerTxt) {
   answer.textContent = answerTxt;
 
   // button click event
-  btn.addEventListener("click", btnStatusUpdate, true);
+  btn.addEventListener("click", btnStatusUpdate);
   function btnStatusUpdate() {
-    btn.classList.add("transform");
     btn.classList.toggle("rotate");
-    if (answer.classList.contains("hidden")) {
-      setTimeout(() => {
-        answer.classList.remove("hidden");
-      }, 300);
-      answer.classList.remove("opacityIn");
-      answer.classList.add("opacityOut");
-    } else {
-      answer.classList.remove("opacityOut");
-      answer.classList.add("opacityIn");
-      setTimeout(() => {
-        answer.classList.add("hidden");
-      }, 300);
-    }
+
+    // ====== Optimized Logic ========
+    setTimeout(() => {
+      answer.classList.toggle("hidden", !answer.classList.contains("hidden"));
+    }, 300);
+    answer.classList.toggle("opacityIn", !answer.classList.contains("hidden"));
+    answer.classList.toggle("opacityOut", answer.classList.contains("hidden"));
   }
+
+  // ====== Unoptimized Logic =========
+  // if (answer.classList.contains("hidden")) {
+  //   setTimeout(() => {
+  //     answer.classList.remove("hidden");
+  //   }, 300);
+  //   answer.classList.remove("opacityIn");
+  //   answer.classList.add("opacityOut");
+  // } else {
+  //   answer.classList.remove("opacityOut");
+  //   answer.classList.add("opacityIn");
+  //   setTimeout(() => {
+  //     answer.classList.add("hidden");
+  //   }, 300);
+  // }
 }
 
 // Adding Faq to the page
@@ -71,13 +77,3 @@ function showFaq() {
   }
 }
 showFaq();
-
-// Adding new faq's
-function addFaq(questionTxt, answerText) {
-  let faq = {
-    id: faqData.length + 1,
-    question: questionTxt,
-    answer: answerText,
-  };
-  faqData.push(faq);
-}

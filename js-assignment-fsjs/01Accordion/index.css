@@ -55,6 +55,7 @@
   margin: 0em;
   border-radius: 120px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .hidden {
@@ -93,8 +94,4 @@
 
 .rotate {
   transform: rotate(45deg);
-}
-
-.transform {
-  transition: all 0.3s ease-in-out;
 }
