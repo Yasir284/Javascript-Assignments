@@ -1,25 +1,19 @@
 function convert(decimal) {
-  let binaries = [1];
-  let ans = [0];
-  //   for (let i = 1; true; i++) {
-  //     binaries.push(binaries[i - 1] * 2);
-  //     ans.push(0);
-  //     if (binaries[i] >= decimal) break;
-  //   }
-  let i = 0;
-  while (binaries[i] < decimal) {
-    binaries.push(binaries[i] * 2);
-    ans.push(0);
-    i++;
+  let length = Math.floor(Math.log2(decimal));
+  let ans = 0;
+  while (length >= 0) {
+    const number = 2 ** length;
+    if (number <= decimal) {
+      ans += 10 ** length;
+      decimal -= number;
+    }
+    length--;
   }
-  binaries.reverse();
-  while (decimal > 0) {
-    const index = binaries.findIndex((value) => value <= decimal);
-    ans[index] = 1;
-    decimal = decimal - binaries[index];
-  }
-  ans = ans.slice(ans.indexOf(1));
-  return ans.join("");
+  return ans;
 }
+const start = Date.now();
 
-console.log(convert(166));
+console.log(convert(165));
+
+const end = Date.now();
+console.log(`Execution time: ${end - start} ms`);
