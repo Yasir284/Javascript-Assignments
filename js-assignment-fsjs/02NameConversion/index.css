@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-shadow: 5px 5px 20px #444444;
 }
 
 .naming_conversion .cases_div {
@@ -36,6 +37,8 @@
   border-radius: 12px;
   margin: 0.5em 0em;
   padding: 0.5em;
+  text-align: center;
+  box-shadow: 5px 5px 6px rgba(51, 51, 51, 0.582);
 }
 
 .case_div h1 {
@@ -43,7 +46,7 @@
   font-weight: 500;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 0em;
-  margin: 0em;
+  margin: 0;
 }
 
 .case_div p {
@@ -59,7 +62,14 @@
   outline: none;
   box-shadow: none;
   border: none;
-  border-radius: 12px;
-  padding: 0.3em 1.4em;
+  border-radius: 1rem;
+  padding: 0.5em 1.5em;
   cursor: pointer;
+}
+
+#convert-btn:hover {
+  box-shadow: 2px 2px 6px #444444;
+  background: #000;
+  color: #fff;
+  transition: all 0.35s ease-in-out;
 }
