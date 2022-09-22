@@ -24,8 +24,20 @@ scissor.addEventListener("click", () => {
 });
 
 function randomStat() {
-  return new Promise(async (resolve) => {
-    resolve(document.querySelector("#result-comp-stat span").textContent);
+  return new Promise((resolve) => {
+    const interval = setInterval(() => {
+      document.querySelector("#result-comp-stat span").textContent = [
+        "🪨",
+        "​✂️",
+        "📃",
+      ][Math.floor(Math.random() * 3)];
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      //   end
+      resolve(document.querySelector("#result-comp-stat span").textContent);
+    }, 2500);
   });
 }
 // console.log(randomStat());
@@ -33,19 +45,8 @@ function randomStat() {
 async function getWinner(userChoice) {
   let user = (document.querySelector("#result-user-stat span").textContent =
     userChoice);
-  const interval = setInterval(() => {
-    document.querySelector("#result-comp-stat span").textContent = [
-      "🪨",
-      "​✂️",
-      "📃",
-    ][Math.floor(Math.random() * 3)];
-  }, 50);
-
-  await setTimeout(() => {
-    clearInterval(interval);
-    let comp = document.querySelector("#result-comp-stat span").textContent;
-    logic(user, comp);
-  }, 2500);
+  let comp = await randomStat();
+  logic(user, comp);
 }
 
 function logic(user, comp) {
