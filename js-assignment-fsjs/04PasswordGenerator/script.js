@@ -22,6 +22,7 @@ const randomFunc = {
 clipboardEl.addEventListener("click", () => {
   let text = resultEl.textContent;
   navigator.clipboard.writeText(text);
+  clipboardEl.setAttribute("title", "Copied");
 });
 
 generateEl.addEventListener("click", () => {
@@ -31,6 +32,7 @@ generateEl.addEventListener("click", () => {
   let symbol = symbolsEl.checked;
   let length = lengthEl.value;
   resultEl.textContent = generatePassword(lower, upper, number, symbol, length);
+  clipboardEl.setAttribute("title", "Click to copy");
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
