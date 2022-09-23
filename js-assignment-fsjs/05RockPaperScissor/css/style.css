@@ -7,6 +7,26 @@
   box-sizing: border-box;
 }
 
+.yes {
+  background-image: url(https://media.giphy.com/media/khPKs6cZKpO8VSEiH6/giphy.gif);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 30rem;
+}
+
+.no {
+  background-image: url(https://media.giphy.com/media/kikm1V0jMPzCfIee1b/giphy.gif);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 20rem;
+}
+
+.tie {
+  background-image: url(https://media.giphy.com/media/FSjtP6N1wC0hiNtwI0/giphy.gif);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 25rem;
+}
 header {
   background-color: #ff6666;
   padding: 2vmin 0;

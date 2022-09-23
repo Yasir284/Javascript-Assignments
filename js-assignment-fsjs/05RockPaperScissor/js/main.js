@@ -9,8 +9,9 @@ let scissor = document.querySelector("#s");
 userStat.appendChild(document.createElement("span"));
 compStat.appendChild(document.createElement("span"));
 winner.appendChild(document.createElement("span"));
-// onclick add stat to userStat
-// make function that choose random stat and add that to compStat
+document.querySelector("main").append(document.createElement("audio"));
+let audio = document.querySelector("audio");
+audio.src = "./Images/mixkit-slot-machine-wheel-1932.wav";
 rock.addEventListener("click", () => {
   getWinner("🪨");
 });
@@ -35,45 +36,54 @@ function randomStat() {
 
     setTimeout(() => {
       clearInterval(interval);
-      //   end
       resolve(document.querySelector("#result-comp-stat span").textContent);
-    }, 2500);
+    }, 3000);
   });
 }
 // console.log(randomStat());
 
 async function getWinner(userChoice) {
+  document.body.classList.remove("yes");
+  document.body.classList.remove("no");
+  document.body.classList.remove("tie");
   let user = (document.querySelector("#result-user-stat span").textContent =
     userChoice);
+  audio.load();
+  audio.play();
   let comp = await randomStat();
+  audio.pause();
   logic(user, comp);
 }
 
 function logic(user, comp) {
   document.querySelector("#result-comp-stat span").textContent = comp;
-  //   let user = document.querySelector("#result-user-stat span").textContent;
-  //   console.log(user);
-  //   let comp = document.querySelector("#result-comp-stat span").textContent;
   if (user == "🪨" && comp == "​✂️") {
     winner.firstElementChild.textContent = " User";
     ++userScore.textContent;
+    document.body.classList.add("yes");
   } else if (user == "🪨" && comp == "📃") {
     winner.firstElementChild.textContent = " Computer";
     ++compScore.textContent;
+    document.body.classList.add("no");
   } else if (user == "​✂️" && comp == "📃") {
     winner.firstElementChild.textContent = " User";
     ++userScore.textContent;
+    document.body.classList.add("yes");
   } else if (user == "​✂️" && comp == "🪨") {
     winner.firstElementChild.textContent = " Computer";
     ++compScore.textContent;
+    document.body.classList.add("no");
   } else if (user == "📃" && comp == "🪨") {
     winner.firstElementChild.textContent = " User";
     ++userScore.textContent;
+    document.body.classList.add("yes");
   } else if (user == "📃" && comp == "​✂️") {
     winner.firstElementChild.textContent = " Computer";
     ++compScore.textContent;
+    document.body.classList.add("no");
   } else if (user == comp) {
     winner.firstElementChild.textContent = " Tie";
+    document.body.classList.add("tie");
   }
 }
 
